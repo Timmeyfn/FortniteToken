@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "players": {
+      ".read": true,
+      ".indexOn": [
+        "tokens"
+      ],
+      "$id": {
+        ".write": "newData.exists()",
+        ".validate": "newData.hasChildren(['name','tokens','t']) && newData.child('name').isString() && newData.child('name').val().matches(/^Anonymous #[0-9]{4}$/) && newData.child('tokens').isNumber() && newData.child('t').val() == now && ((!data.exists() && newData.child('tokens').val() == 2) || (data.exists() && newData.child('tokens').val() == data.child('tokens').val() + 2 && now > data.child('t').val() + 60000))"
+      }
+    }
+  }
+}
